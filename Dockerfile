@@ -16,6 +16,9 @@ RUN useradd -ms /bin/bash buildslave && \
     echo "#includedir /etc/sudoers.d" >> /etc/sudoers && \
     chmod 0440 /etc/sudoers.d/buildslave
 
+
+RUN echo 'APT::Update::Post-Invoke-Success {"touch /var/lib/apt/periodic/update-success-stamp 2>/dev/null || true";};' > /etc/apt/apt.conf.d/15update-stamp
+
 # set the buildslave user as default
 USER buildslave
 WORKDIR /home/buildslave
