@@ -10,6 +10,13 @@ RUN apt-get install -y \
   openssh-client \
   sudo
 
+# grab the VCA CI Scripts
+RUN apt-get install -y wget && \
+  wget https://tool-chain.vcatechnology.com/release/vca-tool-chain-ci-scripts-latest.tar.xz && \
+  tar -Jxf vca-tool-chain-ci-scripts-latest.tar.xz -C / && \
+  rm vca-tool-chain-ci-scripts-latest.tar.xz && \
+  apt-get remove -y wget
+
 # create a build-server user with sudo permissions & no password
 RUN useradd -ms /bin/bash build-server && \
     echo "build-server ALL=(root) NOPASSWD:ALL" | tee -a /etc/sudoers.d/build-server && \
