@@ -28,7 +28,7 @@ RUN vca-install-package \
   sudo
 
 # Grab the VCA CI Scripts
-RUN vca-install-package wget && \
+RUN vca-install-package wget xz-utils && \
   wget -q https://tool-chain.vcatechnology.com/release/vca-tool-chain-ci-scripts-latest.tar.xz && \
   tar -Jxf vca-tool-chain-ci-scripts-latest.tar.xz -C / && \
   rm vca-tool-chain-ci-scripts-latest.tar.xz && \
